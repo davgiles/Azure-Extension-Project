@@ -1,0 +1,114 @@
+{
+    "name": "idera-dashboard-insight",
+    "displayName": "Idera Dashboard Insight",
+    "description": "Idera Azure Data Studio Dashboard",
+    "version": "0.0.1",
+    "publisher": "IDERA, Inc.",
+    "engines": {
+        "vscode": "^1.27.0",
+        "sqlops": "*"
+    },
+    "repository": {
+        "private": true
+    },
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "dashboard.insights": [
+            {
+                "id": "idera-dashboard-insight1.insight",
+                "contrib": {
+                    "queryFile": "./sql/DBSpaceUsed.sql",
+                    "type": {
+                        "horizontalBar": {
+                            "dataDirection": "vertical",
+                            "dataType": "number",
+                            "legendPosition": "none",
+                            "labelFirstColumn": false,
+                            "columnsAsLabels": true
+                        }
+                    }
+                }
+            },
+            {
+                "id": "idera-dashboard-insight2.insight",
+                "contrib": {
+                    "queryFile":"./sql/ActiveSessions.sql",
+                    "type": {
+                        "count": {
+                            "dataDirection": "vertical",
+                            "dataType": "number",
+                            "legendPosition": "none",
+                            "labelFirstColumn": false
+                        }
+                    }
+                }
+            },
+            {
+                "id": "idera-dashboard-insight3.insight",
+                "contrib": {
+                    "queryFile":"./sql/DBBufferUsage.sql",
+                    "type": {
+                        "horizontalBar": {
+                            "dataDirection": "vertical",
+                            "dataType": "number",
+                            "legendPosition": "none",
+                            "labelFirstColumn": false,
+                            "columnsAsLabels": true
+                        }
+                    }
+                }
+            }
+        ],
+        "dashboard.tabs": [
+            {
+                "id": "idera-dashboard-resources.tab",
+                "title": "Idera Resources",
+                "description": "Idera resources",
+                "container": {
+                    "webview-container": null
+                }
+            },
+            {
+                "id": "idera-dashboard-insight.tab",
+                "title": "Idera Dashboard Insight",
+                "description": "Idera dashboard insight",
+                "container": {
+                    "widgets-container": [
+                        {
+                            "name": "Database Space Used",
+                            "gridItemConfig": {
+                                "sizex": 2,
+                                "sizey": 1
+                            },
+                            "widget": {
+                                "idera-dashboard-insight1.insight": {}
+                            }
+                        },
+                        {
+                            "name": "Active Sessions",
+                            "gridItemConfig": {
+                                "sizex": 2,
+                                "sizey": 1
+                            },
+                            "widget": {
+                                "idera-dashboard-insight2.insight": {}
+                            }
+                        },
+                        {
+                            "name": "Database Buffer Usage",
+                            "gridItemConfig": {
+                                "sizex": 2,
+                                "sizey": 1
+                            },
+                            "widget": {
+                                "idera-dashboard-insight3.insight": {}
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
